@@ -26,6 +26,12 @@ exports.handler = async event => {
   const url = BASE_URL + path
   const headers = { 'Authorization': `Basic ${token}` }
 
+  /* 
+  ** WakaTime's API returns a really ugly JSON object
+  ** The data we care about is nested like 3 levels deep
+  ** Not to mention, there are two keys named `data` (hence,
+  ** the reassignment of data to outerData)
+  */
   return axios({
     method,
     url,
